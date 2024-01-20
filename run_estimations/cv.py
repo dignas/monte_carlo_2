@@ -16,7 +16,7 @@ def run_control_variate(no_tests: int, R: int) -> npt.NDArray[np.float64]:
 	for t in range(no_tests):
 		
 		X = sample_normal(R)
-		Y = np.array([call_price(np.array(B)) for B in X])
+		Y = np.array([call_price(np.array([B])) for B in X])
 
 		results[t] = control_variate_estimator(X, Y, 0)
 

@@ -18,7 +18,7 @@ def run_antithetic(no_tests: int, R: int) -> npt.NDArray[np.float64]:
 		Y = np.zeros(R)
 		
 		trajectories = sample_normal_antithetic(R)
-		Y = np.array([call_price(np.array(trajectory)) for trajectory in trajectories])
+		Y = np.array([call_price(np.array([trajectory])) for trajectory in trajectories])
 
 		results[t] = antithetic_estimator(Y)
 
