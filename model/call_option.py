@@ -12,7 +12,7 @@ def build_call_price(r: float, sigma: float, S_0: float, K: float):
 
 	mu_star = r - sigma**2 / 2
 
-	def call_price(brownian_trajectory: npt.ArrayLike):
+	def call_price(brownian_trajectory: npt.ArrayLike[float]):
 		n = len(brownian_trajectory)
 		t = np.arange(1, n + 1)
 		
