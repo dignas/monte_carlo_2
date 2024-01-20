@@ -79,11 +79,11 @@ def run_n_1():
 	ax.set_xlabel("R – number of simulations")
 	ax.set_xlabel("Estimator variance")
 
-	ax.plot(p.Rs, variance_cmc, label="Crude Monte Carlo")
-	ax.plot(p.Rs, variance_stratified_proportional, label="Stratified proportional")
-	ax.plot(p.Rs, variance_stratified_optimal, label="Stratified optimal")
-	ax.plot(p.Rs, variance_antithetic, label="Antithetic")
-	ax.plot(p.Rs, variance_cv, label="Control variate")
+	ax.plot(p.Rs, variance_cmc, label="Crude Monte Carlo", color="black")
+	ax.plot(p.Rs, variance_stratified_proportional, label="Stratified proportional", color="navy")
+	ax.plot(p.Rs, variance_stratified_optimal, label="Stratified optimal", color="lightskyblue")
+	ax.plot(p.Rs, variance_antithetic, label="Antithetic", color="goldenrod")
+	ax.plot(p.Rs, variance_cv, label="Control variate", color="crimson")
 
 	ax.legend()
 
