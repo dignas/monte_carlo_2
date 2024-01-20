@@ -2,7 +2,7 @@ import numpy.typing as npt
 import numpy as np
 from math import ceil
 
-from standard_normal import sample_normal
+from generators.standard_normal import sample_normal
 
 
 # antithetic sampling of the normal distribution

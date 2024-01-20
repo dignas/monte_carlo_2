@@ -2,7 +2,7 @@ import numpy as np
 import numpy.typing as npt
 from scipy.stats.distributions import chi2
 
-from standard_normal import sample_normal
+from generators.standard_normal import sample_normal
 
 
 # This generator can be used to sample a trajectory of brownian motion.
