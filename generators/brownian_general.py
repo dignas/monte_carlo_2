@@ -14,7 +14,7 @@ def sample_trajectory(n: int, m: int = 1, i: int = 1) -> npt.NDArray[np.float64]
 	X = ksi / np.linalg.norm(ksi)
 
 	U = np.random.uniform()
-	D = np.sqrt(chi2.ppf(i / m + U / m, df=n))
+	D = np.sqrt(chi2.ppf((i - 1) / m + U / m, df=n))
 	Z = D * X
 
 	A = np.tril(np.full((n, n), fill_value=1/np.sqrt(n)))
