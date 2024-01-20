@@ -1,7 +1,7 @@
 import numpy as np
 import numpy.typing as npt
 
-from estimators.crude_monte_carlo import crude_monte_carlo
+from estimators.crude_monte_carlo import cmc_estimator
 from estimators.variance_estimators import covariance_estimator, variance_estimator
 
 
@@ -12,4 +12,4 @@ def control_variate_estimator(X: npt.NDArray[np.float64], Y: npt.NDArray[np.floa
 	covXY = covariance_estimator(X, Y)
 	varX = variance_estimator(X)
 	c = -covXY / varX
-	return crude_monte_carlo(Y) - c * (crude_monte_carlo(X) - EX)
+	return cmc_estimator(Y) - c * (cmc_estimator(X) - EX)

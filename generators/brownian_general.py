@@ -19,4 +19,4 @@ def sample_trajectory(n: int, m: int = 1, i: int = 1) -> npt.NDArray[np.float64]
 
 	A = np.tril(np.full((n, n), fill_value=1/np.sqrt(n)))
 
-	return A * Z
+	return A.dot(Z)
