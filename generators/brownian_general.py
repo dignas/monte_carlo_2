@@ -9,7 +9,7 @@ from generators.standard_normal import sample_normal
 # It can be used for CMC, stratified sampling and CV.
 # n specifies the number of sampled points (returns [B(1/n), B(2/n), ..., B(1)]).
 # m, i are the parameters for stratified sampling. m – number of strata, i – index od stratum.
-def sample_trajectory(n: int, m: int = 1, i: int = 1) -> npt.ArrayLike[int]:
+def sample_trajectory(n: int, m: int = 1, i: int = 1) -> npt.NDArray[np.float64]:
 	ksi = sample_normal(n)
 	X = ksi / np.linalg.norm(ksi)
 

@@ -12,14 +12,14 @@ def build_call_price(r: float, sigma: float, S_0: float, K: float):
 
 	mu_star = r - sigma**2 / 2
 
-	def call_price(brownian_trajectory: npt.ArrayLike[float]):
+	def call_price(brownian_trajectory: npt.NDArray[np.float64]):
 		n = len(brownian_trajectory)
 		t = np.arange(1, n + 1)
 		
 		S = S_0 * np.exp(mu_star * t + sigma * brownian_trajectory)
 		An = np.mean(S)
 
-		return np.exp(-r) * np.max(0, An - K)
+		return np.exp(-r) * max(0, An - K)
 
 	return call_price
 

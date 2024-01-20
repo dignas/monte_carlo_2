@@ -8,7 +8,7 @@ from generators.standard_normal import sample_normal
 # antithetic sampling of the normal distribution
 # n - length of the sample (suggested to be even)
 # returns (Z_1, -Z_1, Z_2, -Z_2, ..., Z_{n/2}, -Z_{n/2}), where Z_1, ..., Z_{n/2} are i.i.d.
-def sample_normal_antithetic(n: int) -> npt.ArrayLike[float]:
+def sample_normal_antithetic(n: int) -> npt.NDArray[np.float64]:
 	n_half = ceil(n / 2)
 
 	sample = sample_normal(n_half)
