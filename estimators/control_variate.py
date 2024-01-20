@@ -12,4 +12,4 @@ def control_variate_estimator(X: npt.NDArray[np.float64], Y: npt.NDArray[np.floa
 	covXY = covariance_estimator(X, Y)
 	varX = variance_estimator(X)
 	c = -covXY / varX
-	return cmc_estimator(Y) - c * (cmc_estimator(X) - EX)
+	return cmc_estimator(Y) + c * (cmc_estimator(X) - EX)
