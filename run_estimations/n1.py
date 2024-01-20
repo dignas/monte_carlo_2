@@ -15,7 +15,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-__no_tests = 10
+__no_tests = 100
 __n = 1
 
 
@@ -71,6 +71,20 @@ def run_n_1():
 	ax.legend()
 
 	plt.margins(x=0)
-	plt.show()
+	plt.subplots_adjust(bottom=0.15, top=0.95)
+	plt.savefig("plots/estimation_result_n_1.png", dpi=300)
 
-	
+	_, ax = plt.subplots(1, 1)
+
+	ax.set_xlabel("R – number of simulations")
+	ax.set_xlabel("Estimator variance")
+
+	ax.plot(p.Rs, variance_cmc, label="Crude Monte Carlo")
+	ax.plot(p.Rs, variance_stratified_proportional, label="Stratified proportional")
+	ax.plot(p.Rs, variance_stratified_optimal, label="Stratified optimal")
+	ax.plot(p.Rs, variance_antithetic, label="Antithetic")
+	ax.plot(p.Rs, variance_cv, label="Control variate")
+
+	ax.legend()
+
+	plt.savefig("plots/variance_n_1.png", dpi=300)
