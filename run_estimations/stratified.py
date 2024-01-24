@@ -12,32 +12,32 @@ from typing import Tuple
 
 
 # This function runs the stratified testing for call option. m is the number of equally probable strata.
-# R = [R_1, ..., R_m] is the number of observations expected for each strata.
-# returns (I, sigma), where
-#		I = [I_1, ..., I_no_tests] are the results in consecutive tests
-#		sigma = [sigma_1, ..., sigma_m] are empirical variance for each of the strata
-def run_stratified(no_tests: int, n: int, R: npt.NDArray[np.int32], m: int) -> Tuple[npt.NDArray[np.float64], npt.NDArray[np.float64]]:
+# R = [R_1, ..., R_m] is the number of observations expected for each stratum.
+# returns (I, sigma, strata_sigma), where
+#		I is the estimated result
+#		sigma is the computed variance of the estimator
+#		strata_sigma = [s_1, ..., s_m] is the computed variance in each stratum
+def run_stratified(n: int, R: npt.NDArray[np.int32], m: int) -> Tuple[float, float, npt.NDArray[np.float64]]:
 
-	results = np.zeros(no_tests)
-	sigma = np.zeros(m)
+	strata_sigma = np.zeros(m)
 	p = np.full(m, 1/m)
 
-	for t in range(no_tests):
+	I = np.zeros(m)
 
-		I = np.zeros(m)
+	for i in range(m):
 
-		for i in range(m):
+		Y = np.zeros(R[i])
 
-			Y = np.zeros(R[i])
+		for r in range(R[i]):
 
-			for r in range(R[i]):
+			trajectory = sample_trajectory(n, m, i + 1)
+			Y[r] = call_price(trajectory)
 
-				trajectory = sample_trajectory(n, m, i + 1)
-				Y[r] = call_price(trajectory)
+		I[i] = cmc_estimator(Y)
+		strata_sigma[i] = variance_estimator(Y)
 
-			I[i] = cmc_estimator(Y)
-			sigma[i] = variance_estimator(Y)
+	result = stratified_estimator(p, I)
 
-		results[t] = stratified_estimator(p, I)
+	sigma = np.sum(np.square(p) / R * strata_sigma)
 
-	return results, sigma
+	return result, sigma, strata_sigma
