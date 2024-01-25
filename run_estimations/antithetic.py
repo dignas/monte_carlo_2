@@ -6,7 +6,6 @@ from estimators.antithetic_estimator import antithetic_estimator
 from estimators.variance_estimators import variance_estimator, covariance_estimator
 
 import numpy as np
-import numpy.typing as npt
 from typing import Tuple
 
 
@@ -28,6 +27,6 @@ def run_antithetic(R: int) -> Tuple[float, float]:
 
 	result, sigma_cmc = antithetic_estimator(np.append(Y1, Y2))
 
-	sigma = sigma_cmc * (1 - corr)
+	sigma = sigma_cmc * (1 + corr)
 
 	return result, sigma

@@ -33,7 +33,7 @@ def run_stratified(n: int, R: npt.NDArray[np.int32], m: int) -> Tuple[float, flo
 			trajectory = sample_trajectory(n, m, i + 1)
 			Y[r] = call_price(trajectory)
 
-		I[i] = cmc_estimator(Y)
+		I[i], _ = cmc_estimator(Y)
 		strata_sigma[i] = variance_estimator(Y)
 
 	result = stratified_estimator(p, I)
